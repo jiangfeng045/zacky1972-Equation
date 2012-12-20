@@ -169,6 +169,17 @@ Equation* e;
     STAssertEqualsWithAccuracy(-1, [e imaginary2], 0.00001, @"imaginary2 error");
 }
 
+//一次変数になる　5x+5=0 のテスト
+//x1=-1, x2=0
+-(void)test8
+{
+    e = [[Equation alloc] initWithA:0 b:5 c:5];
+    
+    STAssertEqualsWithAccuracy(-1.0, [e real1], 0.00001, @"real1 error");
+    STAssertEqualsWithAccuracy(0, [e real2], 0.00001, @"real2 error");
+    STAssertEqualsWithAccuracy(0, [e imaginary1], 0.00001, @"imaginary1 error");
+    STAssertEqualsWithAccuracy(0, [e imaginary2], 0.00001, @"imaginary2 error");
+}
 
 
 @end

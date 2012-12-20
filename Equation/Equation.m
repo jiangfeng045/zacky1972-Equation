@@ -23,6 +23,8 @@
     return self;
 }
 
+
+
 // 判別式 discriminant
 - (double)discriminant
 {
@@ -37,35 +39,58 @@
 
 - (double)real1
 {
+    if(a!=0){
     if([self isReal]) {
         return (-b + sqrt([self discriminant]))/(2*a);
     }
     return (-b)/(2*a);
+    }
+    else{if(b!=0)
+        return (-b)/(c);
+    else{if(c==0)
+        return 0;
+        
+    }
+    }
 }
+
 
 - (double)real2
 {
+    if(a!=0){
     if([self isReal]) {
         return (-b - sqrt([self discriminant]))/(2*a);
     }
     return (-b)/(2*a);
+    }
+    else {
+        return 0;
+    }
+
 }
-
-
 - (double)imaginary1
 {
+    if(a!=0){
     if([self isReal]) {
         return 0;
     }
     return (sqrt(-[self discriminant]))/(2*a);
 }
-
+    else {
+        return 0;
+    }
+}
 - (double)imaginary2
 {
+    if(a!=0){
     if([self isReal]) {
         return 0;
     }
     return -(sqrt(-[self discriminant]))/(2*a);
+}
+    else {return 0;
+    }
+
 }
 
 @end
