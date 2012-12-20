@@ -127,4 +127,48 @@ Equation* e;
 // 実は虚数や0で割り算した場合など，計算結果が実数で表せない値になってしまったとき
 // nan という特殊な数値になります。
 // それでテストがパスしてしまったのですね。
+
+
+//結果が二つの実数解　x^2-5x+6=0 のテスト
+//x1=2, x2=3,
+- (void)test5
+{
+    e = [[Equation alloc] initWithA:1 b:-5 c:6];
+    
+    // STAssertEqualsWithAccuracy は浮動小数点演算をテストするときに使います。
+    // 浮動小数点演算では誤差が発生するので，誤差の範囲内で等しいことを確かめる必要があります。
+    // accuracy とは誤差のことです。
+    STAssertEqualsWithAccuracy(2.0, [e real1], 0.00001, @"real1 error");
+    STAssertEqualsWithAccuracy(3.0, [e real2], 0.00001, @"real2 error");
+    STAssertEqualsWithAccuracy(0.0, [e imaginary1], 0.00001, @"imaginary1 error");
+    STAssertEqualsWithAccuracy(0.0, [e imaginary2], 0.00001, @"imaginary2 error");
+}
+
+//結果が重解になる　x^2-6x+9=0 のテスト
+//x1=x2=3,
+- (void)test6
+{
+    e = [[Equation alloc] initWithA:1 b:-6 c:9];
+    
+    STAssertEqualsWithAccuracy(3.0, [e real1], 0.00001, @"real1 error");
+    STAssertEqualsWithAccuracy(3.0, [e real2], 0.00001, @"real2 error");
+    STAssertEqualsWithAccuracy(0.0, [e imaginary1], 0.00001, @"imaginary1 error");
+    STAssertEqualsWithAccuracy(0.0, [e imaginary2], 0.00001, @"imaginary2 error");
+}
+
+
+//結果が二つの虚数解になる　x^2+4x+5=0 のテスト
+//x1=-2+i, x2=-2-i,
+- (void)test7
+{
+    e = [[Equation alloc] initWithA:1 b:4 c:5];
+    
+    STAssertEqualsWithAccuracy(-2.0, [e real1], 0.00001, @"real1 error");
+    STAssertEqualsWithAccuracy(-2.0, [e real2], 0.00001, @"real2 error");
+    STAssertEqualsWithAccuracy(1, [e imaginary1], 0.00001, @"imaginary1 error");
+    STAssertEqualsWithAccuracy(-1, [e imaginary2], 0.00001, @"imaginary2 error");
+}
+
+
+
 @end
